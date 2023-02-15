@@ -69,3 +69,42 @@ function same(arr1, arr2) {
 same([1,2,3], [4,1,9]) // true
 same([1,2,3], [1,9]) // false
 same([1,2,1], [4,4,1]) // false (must be same frequency);
+
+/*
+Example 2: 
+Given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase, or name formed by rearranging the letters of another, such as cinema, formed from iceman. 
+*/
+
+// solution
+function validAnagram(first, second) {
+    // if the length of two given arrays are different, they are not anagrams; return false
+    if (first.length !== second.length) {
+        return false;
+    }
+    // create a lookup map
+    let lookup = {};
+    // loop through the first array, if the value exists, increment it's value by 1 otherwise create a new key and set value to 1 (first one)
+    for (let char of first) {
+        lookup[char] ? lookup[char] += 1 : lookup[char] = 1;
+    }
+    // then, loop through second array and check if it's value exists in the lookup
+    // it it doesn't exist, return false, otherwise decrement it by one (to keep track)
+    for (let char of second) {
+        if (!lookup[char]) {
+            return false
+        } else {
+            lookup[char] -= 1;
+        }
+    }
+    // at the end of the loop, if all values exist in both arrays by checking the lookup, return true
+    return true;
+}
+
+// tests
+validAnagram('', '') // true
+validAnagram('aaz', 'zza') // false
+validAnagram('anagram', 'nagaram') // true
+validAnagram('rat', 'car') // false
+validAnagram('awesome', 'awesom') // false
+validAnagram('qwerty', 'qeywrt') // true
+validAnagram('texttwisttime', 'timetwisttext') // true
