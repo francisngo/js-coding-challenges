@@ -20,7 +20,7 @@ function minSubArrayLen(array, sum) {
         // if the current window adds up to at least the given sum then shrink the window
         else if (total >= sum) {
             minLen = Math.min(minLen, end - start);
-            total -= nums[start];
+            total -= array[start];
             start++
         }
         // if current total is less than required sum but we reach the end, break out of loop
