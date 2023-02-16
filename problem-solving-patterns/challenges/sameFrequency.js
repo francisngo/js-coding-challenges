@@ -25,7 +25,6 @@ function sameFrequency(nums1, nums2) {
         lookup[char] ? lookup[char] += 1 : lookup[char] = 1;
     }
     for (let char in stringNum2) {
-        console.log(char);
         if (!lookup[char]) {
             return false
         } else {
