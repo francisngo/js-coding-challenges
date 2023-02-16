@@ -26,8 +26,8 @@ function maxSubarraySum(array, number) {
     for (let i = 0; i < number; i++) {
         tempSum += array[i];
     }
-    for (let i = num; i < array.length; i++) {
-        tempSum = tempSum - array[i - num] + array[i];
+    for (let i = number; i < array.length; i++) {
+        tempSum = tempSum - array[i - number] + array[i];
         maxSum = Math.max(maxSum, tempSum);
     }
     return maxSum;
