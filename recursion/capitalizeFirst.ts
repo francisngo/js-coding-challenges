@@ -6,12 +6,10 @@ Write a recursive function called capitalizeFirst. Given an array of strings, ca
 
 // solution
 function capitalizeFirst(array: string[]): string[] {
-    if (array.length === 1) {
-        return [array[0].toUpperCase()];
-    }
-    let newArray = capitalizeFirst(array.slice(0, -1));
-    newArray.push(array.slice(array.length -1)[0].toUpperCase());
-    return newArray;
+    if(!array.length) return [];
+    const string = array[0];
+    const capitalized = string[0].toUpperCase() + string.slice(1);
+    return [capitalized].concat(capitalizeFirst(array.slice(1)));
 }
 
 // test
