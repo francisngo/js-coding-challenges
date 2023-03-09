@@ -15,7 +15,7 @@ Pseudocode
 */
 
 // solution
-function bubbleSort(array: number[]) {
+function bubbleSort(array: number[]): number[] {
     let isSwapped = true;
     for (let i = array.length; i > 0; i--) {
         isSwapped = true;
