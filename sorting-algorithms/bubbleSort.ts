@@ -1,3 +1,4 @@
+import { swap } from "./utils/swap";
 /*
 
 Bubble sort algorithm is an algorithm that sorts the array by comparing two adjacent elements and swaps them if they are not in the intended order. Here order can be anything like increasing order or decreasing order.
@@ -14,23 +15,18 @@ Pseudocode
 */
 
 // solution
-function bubbleSort(array) {
-    const swap = (arr, idx1, idx2) => {
-        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
-    }
-    let isSwapped = false;
+function bubbleSort(array: number[]) {
+    let isSwapped = true;
     for (let i = array.length; i > 0; i--) {
-        isSwapped = false;
+        isSwapped = true;
         for (let j = 0; j < i - 1; j++) {
-            let first = array[j]
-            let second = array[j + 1];
-            if (first > second) {
-                swap(array, first, second);
-                isSwapped = true;
+            if (array[j] > array[j + 1]) {
+                swap(array, j, j + 1);
+                isSwapped = false;
             }
         }
         // if no two elements were swapped by inner loop, then break
-        if (!isSwapped) break;
+        if (isSwapped) break;
     }
     return array;
 }
