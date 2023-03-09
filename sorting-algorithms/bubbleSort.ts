@@ -12,14 +12,18 @@ function bubbleSort(array) {
     const swap = (arr, idx1, idx2) => {
         [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
     }
+    let noSwaps;
     for (let i = array.length; i > 0; i--) {
+        noSwaps = true;
         for (let j = 0; j < i - 1; j++) {
             let first = array[j]
             let second = array[j + 1];
             if (first > second) {
                 swap(array, first, second);
+                noSwaps = false;
             }
         }
+        if (noSwaps) break;
     }
     return array;
 }
