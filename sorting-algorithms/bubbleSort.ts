@@ -1,5 +1,11 @@
 /*
 
+Bubble sort algorithm is an algorithm that sorts the array by comparing two adjacent elements and swaps them if they are not in the intended order. Here order can be anything like increasing order or decreasing order.
+
+Bubble sort compares the element from index 0 and if the 0th index is greater than 1st index then the values get swapped and if the 0th index is less than the 1st index then nothing happens. 
+
+The 1st index compares to the 2nd index then the 2nd index compares to the 3rd, and so on...
+
 Pseudocode
 - Start looping from with a variable called i, at the end of the array, towards the beginning
 - Start an inner loop with a variable called j from the beginning until i - 1; 
@@ -12,18 +18,19 @@ function bubbleSort(array) {
     const swap = (arr, idx1, idx2) => {
         [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
     }
-    let noSwaps;
+    let isSwapped = false;
     for (let i = array.length; i > 0; i--) {
-        noSwaps = true;
+        isSwapped = false;
         for (let j = 0; j < i - 1; j++) {
             let first = array[j]
             let second = array[j + 1];
             if (first > second) {
                 swap(array, first, second);
-                noSwaps = false;
+                isSwapped = true;
             }
         }
-        if (noSwaps) break;
+        // if no two elements were swapped by inner loop, then break
+        if (!isSwapped) break;
     }
     return array;
 }
