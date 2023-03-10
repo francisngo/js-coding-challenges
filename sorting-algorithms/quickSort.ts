@@ -30,7 +30,9 @@ function pivot(array, start = 0, end = array.length) {
 function quickSort(array, left = 0, right = array.length - 1) {
     if (left < right) {
         let pivotIndex = pivot(array, left, right);
+        // left side of pivot
         quickSort(array, left, pivotIndex - 1);
+        // right side of pivot
         quickSort(array, pivotIndex + 1, right);
     }
     return array;
