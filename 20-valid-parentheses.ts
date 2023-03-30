@@ -1,16 +1,27 @@
 /*
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
-Given an expression string `expression`, write a program to examine whether the pairs and the orders of "{", "}", "(", ")", "[", "]" are correct in the given expression
+An input string is valid if:
 
-Input: expression = "[()]{}{[()()]()}"
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+ 
+
+Example 1:
+Input: s = "()"
 Output: true
 
-Input: expression = "[(])"
-Output: false
+Example 2:
+Input: s = "()[]{}"
+Output: true
 
+Example 3:
+Input: s = "(]"
+Output: false
 */
 
-function balancedBrackets(expression: string): boolean {
+const isValid = (expression: string): boolean => {
     let stack: string[] = [];
 
     for (let i = 0; i < expression.length; i++) {
@@ -48,5 +59,5 @@ function balancedBrackets(expression: string): boolean {
     return stack.length === 0;
 }
 
-balancedBrackets('[()]{}{[()()]()}'); // true
-balancedBrackets('[(])'); // false
+isValid('[()]{}{[()()]()}'); // true
+isValid('[(])'); // false
