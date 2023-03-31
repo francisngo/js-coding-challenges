@@ -48,20 +48,11 @@ Explanation: The subarray [5,4,-1,7,8] has the largest sum 23.
 
 // linear solution - O(n)
 let maxSubArray = function(nums) {
-    // initialize maxSum as an integer that below the lowest number (-Infinity)
-    let maxSum = Number.NEGATIVE_INFINITY;
-    // initialize current sum, starting at 0
-    let sum = 0;
-    
-    // iterate through all the elements
-    for (let value of nums) {
-        // add current value to current sum
-        sum += value;
-        // update the maxSum with the maximum sum
-        maxSum = Math.max(maxSum, sum);
-        // if sum is less than 0, update it to 0
-        if (sum < 0) sum = 0;
+    let currentSum = nums[0];
+    let maxSum = nums[0];
+    for (let i = 1; i < nums.length; i++) {
+        currentSum = Math.max(currentSum + nums[i], nums[i]);
+        maxSum = Math.max(maxSum, currentSum);  
     }
-    // return the maximum subarray
     return maxSum;
 }
