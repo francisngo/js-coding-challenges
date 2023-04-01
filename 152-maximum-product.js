@@ -14,7 +14,7 @@ Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 */
 
-
+// If there is one negative number then the final answer can never be positive, therefore to avoid this situation we have to traverse both ways to get the final maximum product.
 
 let maxProduct = function(nums) {
     let maximumProduct = Number.NEGATIVE_INFINITY;
