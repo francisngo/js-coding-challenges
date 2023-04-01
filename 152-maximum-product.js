@@ -17,11 +17,18 @@ Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 
 
 let maxProduct = function(nums) {
-    let currentProduct = nums[0];
-    let maximumProduct = nums[0];
-    for (let i = 1; i < nums.length; i++) {
-        currentProduct = Math.max(currentProduct * nums[i], nums[i]);
+    let maximumProduct = Number.NEGATIVE_INFINITY;
+    let currentProduct = 1;
+    for (let i = 0; i < nums.length; i++) {
+        currentProduct *= nums[i];
         maximumProduct = Math.max(maximumProduct, currentProduct);
+        if (currentProduct === 0) currentProduct = 1;
+    }
+    currentProduct = 1;
+    for (let i = nums.length - 1; i >= 0; i--) {
+        currentProduct *= nums[i];
+        maximumProduct = Math.max(maximumProduct, currentProduct);
+        if (currentProduct === 0) currentProduct = 1;
     }
     return maximumProduct;
 };
