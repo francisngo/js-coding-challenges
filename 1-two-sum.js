@@ -23,22 +23,27 @@ Output: [0,1]
 
 // hash approach
 let twoSum = function(nums, target) {
-    const map = {};
-
-    for (let i = 0; i < nums.length; i++) {
-        // for each number, we calculate its complete (i.e. the value that would add up to the target if added to the current number)
-        const complement = target - nums[i];
-
-        // check if complement is in the map
-        // if so, then we found the pair of numbers and it's indices
-        if (complement in map) {
-            return [map[complement], i];
-        }
-
-        // otherwise, set the value and index 
-        map[nums[i]] = i;
+    if (!Array.isArray(nums)) {
+        return [];
     }
-}
+    
+    var hash = {};
+    
+    for (var i = 0; i < nums.length; i++) {
+        var num = nums[i];
+        hash[num] = i;
+    }
+    
+    for (var i = 0; i < nums.length; i++) {
+        var num = nums[i];
+        var diff = target - num;
+        // if difference exists in hash AND the index of current number isn't the current index 
+        if (hash.hasOwnProperty(diff) && hash[diff] !== i) {
+            return [i, hash[diff]];
+        }
+    }
+    
+};
 
 // // two pointer approach
 // let twoSum = function(nums, target) {
