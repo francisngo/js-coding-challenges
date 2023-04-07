@@ -21,43 +21,52 @@ Output: [0,1]
 
 */
 
+// brute force
+// let twoSum = function (nums, target) {
+// 	for (let i = 0; i < nums.length; i++) {
+// 		let first = nums[i];
+// 		for (j = 1; j < nums.length; j++) {
+// 			let second = nums[j];
+// 			if (first + second === target) {
+// 				return [first, second];
+// 			}
+// 		}
+// 	}
+// };
+
 // hash approach
-let twoSum = function(nums, target) {
-    if (!Array.isArray(nums)) {
-        return [];
-    }
-    
-    var hash = {};
-    
-    for (var i = 0; i < nums.length; i++) {
-        var num = nums[i];
-        hash[num] = i;
-    }
-    
-    for (var i = 0; i < nums.length; i++) {
-        var num = nums[i];
-        var diff = target - num;
-        // if difference exists in hash AND the index of current number isn't the current index 
-        if (hash.hasOwnProperty(diff) && hash[diff] !== i) {
-            return [i, hash[diff]];
-        }
-    }
-    
+let twoSum = function (nums, target) {
+	if (!Array.isArray(nums)) {
+		return [];
+	}
+	let hash = {};
+	for (let i = 0; i < nums.length; i++) {
+		var num = nums[i];
+		hash[num] = i;
+	}
+	for (let i = 0; i < nums.length; i++) {
+		let num = nums[i];
+		let diff = target - num;
+		// if difference exists in hash AND the index of current number isn't the current index
+		if (hash.hasOwnProperty(diff) && hash[diff] !== i) {
+			return [i, hash[diff]];
+		}
+	}
 };
 
 // // two pointer approach
-// let twoSum = function(nums, target) {
-//     let left = 0;
-//     let right = 1;
-//     while (left < nums.length) {
-//         let sum = nums[left] + nums[right];
-//         if (sum === target) {
-//             return [left, right]
-//         } else if (right === nums.length - 1) {
-//             left++
-//             right = left + 1;
-//         } else {
-//             right++
-//         }
-//     }
-// }
+// let twoSum = function (nums, target) {
+// 	let left = 0;
+// 	let right = 1;
+// 	while (left < nums.length) {
+// 		let sum = nums[left] + nums[right];
+// 		if (sum === target) {
+// 			return [left, right];
+// 		} else if (right === nums.length - 1) {
+// 			left++;
+// 			right = left + 1;
+// 		} else {
+// 			right++;
+// 		}
+// 	}
+// };
