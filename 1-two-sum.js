@@ -28,31 +28,31 @@ Output: [0,1]
 // 		for (j = 1; j < nums.length; j++) {
 // 			let second = nums[j];
 // 			if (first + second === target) {
-// 				return [first, second];
+// 				return [i, j];
 // 			}
 // 		}
 // 	}
 // };
 
 // hash approach
-let twoSum = function (nums, target) {
-	if (!Array.isArray(nums)) {
-		return [];
-	}
-	let hash = {};
-	for (let i = 0; i < nums.length; i++) {
-		var num = nums[i];
-		hash[num] = i;
-	}
-	for (let i = 0; i < nums.length; i++) {
-		let num = nums[i];
-		let diff = target - num;
-		// if difference exists in hash AND the index of current number isn't the current index
-		if (hash.hasOwnProperty(diff) && hash[diff] !== i) {
-			return [i, hash[diff]];
-		}
-	}
-};
+// let twoSum = function (nums, target) {
+// 	if (!Array.isArray(nums)) {
+// 		return [];
+// 	}
+// 	let hash = {};
+// 	for (let i = 0; i < nums.length; i++) {
+// 		var num = nums[i];
+// 		hash[num] = i;
+// 	}
+// 	for (let i = 0; i < nums.length; i++) {
+// 		let num = nums[i];
+// 		let diff = target - num;
+// 		// if difference exists in hash AND the index of current number isn't the current index
+// 		if (hash.hasOwnProperty(diff) && hash[diff] !== i) {
+// 			return [i, hash[diff]];
+// 		}
+// 	}
+// };
 
 // // two pointer approach
 // let twoSum = function (nums, target) {
@@ -70,3 +70,19 @@ let twoSum = function (nums, target) {
 // 		}
 // 	}
 // };
+
+// two pointer approach (beginning and end)
+let twoSum = function (nums, target) {
+	let left = 0;
+	let right = nums.length - 1;
+	while (left < right) {
+		let sum = nums[left] + nums[right];
+		if (sum === target) {
+			return [left, right];
+		} else if (sum > target) {
+			right--;
+		} else {
+			left++;
+		}
+	}
+};
