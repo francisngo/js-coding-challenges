@@ -31,3 +31,16 @@ let hammingWeight = function (n) {
 	}
 	return count;
 };
+
+/*
+explanation
+
+convert 32-bit unsigned interger to a string
+pass radix parameter of 2 to keep it in base 2 
+create a count varaible with a value of 0
+loop through each character of string
+increase the count by 1 every time there is 1 in the string
+return the count
+
+NOTE: About Base 2 (https://www.expii.com/t/base-binary-numbers-9192)
+*/
