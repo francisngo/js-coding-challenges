@@ -44,3 +44,28 @@ return the count
 
 NOTE: About Base 2 (https://www.expii.com/t/base-binary-numbers-9192)
 */
+
+// bitwise solution
+let hammingWeightBitWise = function (n) {
+	let count = 0;
+	while (n !== 0) {
+		const bitComparision = n & 1; // 1 & 1 will return 1. 0 & 1 will return 0
+		if (bitComparison === 1) count++;
+		n >>>= 1; // unsigned right shift assignment (chop off the last bit and assign it)
+	}
+	return count;
+};
+
+/*
+explanation
+
+convert strings and arrays can be slow. 
+create a count variable with a value of 0
+while the integer is not 0
+check if last bit is 1 - use bitwise AND check for an odd bit (1) or an even bit (0).
+if so, add to count
+chop off the last (fartheset right) bit of the integeer. JS has 3 bitwise shift operators
+use unsigned right shift: n = n >>> 1 
+return count
+
+*/
