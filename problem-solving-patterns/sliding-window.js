@@ -90,6 +90,9 @@ function findLength(nums, k) {
 		// keep increasing size of window until the current sum is larger than the target value
 		while (current > k) {
 			// subtract/remove the first left value and move the left pointer
+			// this continues until current is less than k
+			// while loop iterates only n times making it O(n) and not O(n^2) (left starts at 0, only increases and never exceeds n)
+			// if the while loop were to run n times on one iteration of the for loop, that would mean it wouldn't run at all for all the other iterations of the for loop.
 			current -= nums[left];
 			left++;
 		}
