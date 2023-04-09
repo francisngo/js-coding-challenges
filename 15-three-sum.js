@@ -24,28 +24,27 @@ Output: [[0,0,0]]
 Explanation: The only possible triplet sums up to 0.
 */
 
-
-let threeSum = function(nums) {
-    let sorted = nums.sort((a, b) => a - b);
-    let triplets = [];
-    for (let i = 0; i < sorted.length - 2; i++) {
-        if (i > 0 && nums[i] === nums[i - 1]) continue;
-        let left = i + 1;
-        let right = sorted.length - 1;
-        while (left < right) {
-            let sum = nums[i] + nums[left] + nums[right];
-            if (sum === 0) {
-                triplets.push([nums[i], nums[left], nums[right]]);
-                left++;
-                while (nums[left] === nums[left - 1] && left < right) {
-                    left++;
-                }
-            } else if (sum < 0) {
-                left++;
-            } else {
-                right--;
-            }
-        }
-    }
-    return triplets;
-}
+let threeSum = function (nums) {
+	let sorted = nums.sort((a, b) => a - b);
+	let triplets = [];
+	for (let i = 0; i < sorted.length - 2; i++) {
+		if (i > 0 && nums[i] === nums[i - 1]) continue;
+		let left = i + 1;
+		let right = sorted.length - 1;
+		while (left < right) {
+			let sum = nums[i] + nums[left] + nums[right];
+			if (sum === 0) {
+				triplets.push([nums[i], nums[left], nums[right]]);
+				left++;
+				while (nums[left] === nums[left - 1] && left < right) {
+					left++;
+				}
+			} else if (sum < 0) {
+				left++;
+			} else {
+				right--;
+			}
+		}
+	}
+	return triplets;
+};
