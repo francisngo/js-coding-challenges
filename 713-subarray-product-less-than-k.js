@@ -71,4 +71,13 @@ currentProduct = 10
 currentProduct * nums[right] = 60
 60 >= 100? No
 output = 3 - 1 + 1 + output(5) = 8
+
+right = 0; [10]
+right = 1; [5], [10, 5]
+right = 2; [2], [5, 2]
+right = 3; [6], [2, 6], [5, 2, 6]
+
+For each index, the number of subarrays ending at that index is the length of the window after reaching that index. For any given index `right`, a subarray could start at any index between `left` and `right`, which is a total of `right - left + 1` (the window size) starting indices. 
+
+Exxample after reaching 2, the product is too large, so we remove the 10. Now the window is valid, and it has a length of 2, that means there are 2 valid subarrays that end here ([2], and [5, 2])
 */
