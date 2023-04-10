@@ -133,3 +133,27 @@ function findLengthfOfLongestSubstr(s) {
 
 findLengthfOfLongestSubstr("1101100111"); // 5
 findLengthfOfLongestSubstr("11001011"); // 4
+
+/*
+Example 4: Fixed Window
+Given an integer array nums and an integer k, find the sum of the subarray with the largest sum whose length is k.
+
+Input: nums = [3, -1, 4, 12, -8, 5, 6] k = 4
+*/
+
+function findBestSubarray(nums, k) {
+	let currentSum = 0;
+	// get the sum of the first subarray
+	for (let i = 0; i < k; i++) {
+		currentSum += nums[i];
+	}
+
+	// set currentSum to the output
+	let output = currentSum;
+	for (let j = k; j < nums.length; j++) {
+		currentSum += nums[i] - nums[i - k];
+		output = Math.max(output, currentSum);
+	}
+
+	return output;
+}
