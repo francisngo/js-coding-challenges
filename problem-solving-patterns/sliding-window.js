@@ -76,7 +76,7 @@ Given an array of positive integers nums and an integer k, find the length of th
 
 NOTE: The window starts empty and continues to grow until current sum is larger than the target value. 
 */
-function findLength(nums, k) {
+function findMaxLengthOfSum(nums, k) {
 	// beginning of the window
 	let left = 0;
 	// keeps track the sum of the current window.
@@ -102,4 +102,34 @@ function findLength(nums, k) {
 	return maxLength;
 }
 
-findLength([3, 1, 2, 7, 4, 2, 1, 1, 5], 8); // 4
+findMaxLengthOfSum([3, 1, 2, 7, 4, 2, 1, 1, 5], 8); // 4
+
+/*
+Example 3: 
+You are given a binary substring s (a string containing only 0 and 1). An operation involves flipping a 0 into a 1. What is the length of the longest substring containing only 1 after performing at most one operation? 
+
+For example, given s = "1101100111", the answer is 5. If you perform the operation at index 2, the string becomes 1111100111.
+*/
+
+function findLengthfOfLongestSubstr(s) {
+	let left = 0;
+	let current = 0;
+	let maxLength = 0;
+	for (let right = 0; right < s.length; right++) {
+		if (s[right] === "0") {
+			current++;
+		}
+
+		while (current > 1) {
+			if (s[left] === "0") {
+				current -= 1;
+			}
+			left++;
+		}
+		maxLength = Math.max(maxLength, right - left + 1);
+	}
+	return maxLength;
+}
+
+findLengthfOfLongestSubstr("1101100111"); // 5
+findLengthfOfLongestSubstr("11001011"); // 4
