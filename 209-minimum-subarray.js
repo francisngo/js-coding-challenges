@@ -14,3 +14,24 @@ Example 3:
 Input: target = 11, nums = [1,1,1,1,1,1,1,1]
 Output: 0
 */
+
+let minSubArray = function (nums, target) {
+	let left = 0;
+	let right = 0;
+	let min = Infinity;
+	let total = 0;
+	while (left < nums.length) {
+		if (total < target && right < nums.length) {
+			total += nums[right++];
+		} else if (total >= target) {
+			min = Math.min(min, right - left);
+			total -= nums[left];
+			left++;
+		} else {
+			break;
+		}
+	}
+	return min === Infinity ? 0 : min;
+};
+
+console.log(minSubArray([2, 3, 1, 2, 4, 3], 7));
