@@ -3,7 +3,6 @@ function breakingRecords(scores) {
 	let minCount = 0;
 	let max = scores[0];
 	let min = scores[0];
-	debugger;
 	for (let i = 1; i < scores.length; i++) {
 		let score = scores[i];
 		if (score < min && score !== min) {
