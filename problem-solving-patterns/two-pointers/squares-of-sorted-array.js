@@ -19,6 +19,8 @@ Output: [4,9,9,49,121]
 // because we have negative numbers on the left and positive numbers on the right (sorted), we could do this by setting up two pointers, one at the beginning of array and one at the end of the array. then loop through the array starting at the end. we could check to see if the value is less than or greater, if its greater store the right value, decrement the right pointer and then square the value and place it in the current position (which is last place)
 // we then compare the left (which is the same from previous) against the next current to see which value is greater, and repeat the steps
 
+// key note: it is not possible to start looping the array from the start because the non-squared array is sorted from negative to positive and the negatives when absolute, will be a higher number. We want to compare high number with high number and place the highest at the end of array hence why its best to start looping the array from the end.
+
 // [-7,-3,2,3,11]
 // [49, 9, 4, 9, 121]
 
@@ -28,7 +30,7 @@ let sortedSquares = function (nums) {
 	let right = nums.length - 1;
 	for (let i = nums.length - 1; i >= 0; i--) {
 		let square;
-		if (nums[left] < nums[right]) {
+		if (Math.abs(nums[left]) < Math.abs(nums[right])) {
 			square = nums[right];
 			right--;
 		} else {
@@ -39,6 +41,8 @@ let sortedSquares = function (nums) {
 	}
 	return result;
 };
+
+console.log(sortedSquares([-7, -3, 2, 3, 11]));
 
 // i = nums.length - 1 (4);
 // [-7,-3,2,3,11]
