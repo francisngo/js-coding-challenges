@@ -51,19 +51,34 @@ You should not do any reverse operation, the resulting string is "abcd".
     l           r
 */
 
-let reversePrefix = function (words, ch) {
-	let chIndex = words.indexOf(ch);
-	let result = "";
-	let left = chIndex;
-	let right = chIndex + 1;
-	while (right <= words.length) {
-		if (left >= 0) {
-			result += words[left--];
-		} else if (!words[right]) {
-			return result;
-		} else {
-			result += words[right++];
-		}
+// let reversePrefix = function (words, ch) {
+// 	let chIndex = words.indexOf(ch);
+// 	let result = "";
+// 	let left = chIndex;
+// 	let right = chIndex + 1;
+// 	while (right <= words.length) {
+// 		if (left >= 0) {
+// 			result += words[left--];
+// 		} else if (!words[right]) {
+// 			return result;
+// 		} else {
+// 			result += words[right++];
+// 		}
+// 	}
+// 	return result;
+// };
+
+var reversePrefix = function (word, ch) {
+	let chIndex = word.indexOf(ch);
+	let result = word.split("");
+	let left = 0;
+	let right = chIndex;
+	while (left < right) {
+		let temp = result[left];
+		result[left] = result[right];
+		result[right] = temp;
+		left++;
+		right--;
 	}
-	return result;
+	return result.join("");
 };
