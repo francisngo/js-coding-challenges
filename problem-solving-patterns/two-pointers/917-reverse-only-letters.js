@@ -39,19 +39,21 @@ var reverseOnlyLetters = function (s) {
 	let regex = new RegExp("[a-zA-Z]");
 	let left = 0;
 	let right = s.length - 1;
+	let string = s.split("");
 	while (left < right) {
-		if (regex.test(s[left]) && s[right]) {
-			let temp = s[left];
-			s[left] = s[right];
-			s[righ] = temp;
+		if (regex.test(string[left]) && regex.test(string[right])) {
+			let temp = string[left];
+			string[left] = string[right];
+			string[right] = temp;
 			left++;
 			right--;
-		} else if (regex.test(s[left] && !regex.test(s[right]))) {
+		} else if (!regex.test(string[right])) {
 			right--;
-		} else if (!regex.test(s[left] && regex.test(s[right]))) {
+		} else if (!regex.test(string[left])) {
 			left++;
 		}
 	}
+	return string.join("");
 };
 
 console.log(reverseOnlyLetters("a-bC-dEf-ghIj"));
