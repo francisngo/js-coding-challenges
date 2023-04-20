@@ -80,3 +80,17 @@ var threeSum = function (nums) {
 
 console.log(threeSum([-1, 0, 1, 2, -1, -4]));
 // [[-1,-1,2],[-1,0,1]]
+
+/*
+TC: O(n^2)
+SC: O(1)
+
+N is the length of `nums`
+The outer loop iterates over the `nums` array once with a linear time O(n), where N is the length of the nums array.
+
+The inner loop which is the while loop, also has a linear time complexity of O(n), where N is the length of the nums array. This is because in the worst case, it could potentially iterate over the entire array from the left pointer to the right pointer
+
+Hence, the overall time complexity of the function is O(n^2)
+
+The space compleixty of the function is O(1), as the only additional space used in the function is the triplets array, which is the output array to store the result. The size of this array depends on the input and is not proportional to the size of the input array. Therefore, the space complexity is constant or O(1). 
+*/
