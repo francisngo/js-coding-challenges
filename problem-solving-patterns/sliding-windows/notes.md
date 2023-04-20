@@ -9,7 +9,7 @@ Here's some pseudocode illustrating the concept:
 ```
 function fn(arr) { 
     left = 0;
-    for right in [0, arr.length - ]:
+    for right in [0, arr.length - 1]:
         Do some logic to "add" element at arr[right] to window
         while left < right AND condition from problem not met:
             Do some logic to "remove" element at arr[left] from window
@@ -57,6 +57,7 @@ let findLength = function(nums, k) {
 
 > For example, given s = "1101100111", the answer is 5. If you perform the operation at index 2, the string becomes 1111100111.
 
+```
 let findLength = function(s) {
     let left = 0; 
     let zeroCount = 0;
@@ -75,3 +76,78 @@ let findLength = function(s) {
         result = Math.max(result, right - left + 1);
     }
 }
+```
+
+> Example 3: Given an array of positive integers `nums` and an integer `k`, return the number of contiguous subarrays where the product of all elements in the subarray is strictly less than `k`. 
+
+> For xample. given the input `nums = [10, 5, 2, 6], k = 100`, the answer is `8`. The subarrays with products less than `k` are: `[10], [5], [2], [6], [10, 5], [5,2], [2,6], [5, 2, 6]`
+
+> Key idea: Whenever you see a problem asking for the number of subarrays, think of this, at each index, how many valid subarrays end at this index. 
+
+```
+let numSubArrayProductLessThanK = function(nums, k) {
+    let output = 0;
+    let left = 0;
+    let current = 1
+    for (let right = 0; right < nums.length; i++) {
+        current *= nums[right]
+        while (current > k) {
+            current /= nums[left]
+            left++;
+        }
+        output += right - left + 1;
+    }
+}
+```
+
+### Fixed window size
+Sometimes, a problem will specify a fixed subarray length. These questions are easy because the criteria are usually the same - just make sure the window size remains the same. To build the initial window (from index `0` to `k - 1`), you can either build it outside of the main loop or you can factor the logic inside your main loop to only consider the window for the answer once it reaches size `k`. 
+
+Here's some pseudocode for both methods: 
+
+```
+// first approach
+function fn(arr, k) {
+    curr = some data type to track the window
+    // build the first window
+    for i in [0, k - 1]:
+        Do something with curr or other variables to build first window
+    ans = answer variable, might be equal to curr here depending on the problem
+    for i in [k, arr.length - 1]:
+        Add arr[i] to window
+        Remove arr[i - k] from window
+        Update ans
+    return ans
+}
+
+// second approach
+function fn(arr, k) {
+    curr = some data type to track the window
+    ans = answer variable
+    for i in range(len(arr)):
+        if i >= k:
+            Update ans
+            Remove arr[i - k] from windpw
+        Add arr[i] to window
+    Update ans
+    return ans // Alternativive, you could do something like return max(ans, curr) if the problem is asking for a maximum value and curr is tracking it. 
+}
+```
+
+> Example 4: Given an integer array `nums` and an integer `k`, find the sum of the subarray with the largest sum whose length is `k`: [3, -1, 4, 12, -8, 5, 6] and k = 4;
+
+```
+let findBestSubarray = function(nums, k) {
+    let current = 0;
+    let output = 0;
+    for (let i = 0; i < k; i++) {
+        current += nums[i];
+    }
+    output = current;
+    for (let i = k; i < nums.length; i++) {
+        current += nums[i] - nums[i - k];
+        output = Math.max(output, current);
+    }
+    return output;
+}
+```
