@@ -19,4 +19,31 @@ Explanation: The answer is "wke", with the length of 3.
 Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
 */
 
-let lengthOfLongestSubstring = function (s) {};
+// brute force approach
+let lengthOfLongestSubstring = function (s) {
+	let output = 0;
+
+	function checkRepetition(s, start, end) {
+		let chars = new Set();
+		for (let i = start; i <= end; i++) {
+			if (chars.has(s[i])) {
+				return false;
+			}
+			chars.add(s[i]);
+		}
+		return true;
+	}
+
+	for (let i = 0; i < s.length; i++) {
+		for (let j = i; j < s.length; j++) {
+			if (checkRepetition(s, i, j)) {
+				output = Math.max(output, j - i + 1);
+			}
+		}
+	}
+	return output;
+};
+
+console.log(lengthOfLongestSubstring("abcabcbb"));
+console.log(lengthOfLongestSubstring("bbbbb"));
+console.log(lengthOfLongestSubstring("pwwkew"));
