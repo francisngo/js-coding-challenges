@@ -20,25 +20,44 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 */
 
 // brute force approach
+// let lengthOfLongestSubstring = function (s) {
+// 	let output = 0;
+
+// 	function checkRepetition(s, start, end) {
+// 		let chars = new Set();
+// 		for (let i = start; i <= end; i++) {
+// 			if (chars.has(s[i])) {
+// 				return false;
+// 			}
+// 			chars.add(s[i]);
+// 		}
+// 		return true;
+// 	}
+
+// 	for (let i = 0; i < s.length; i++) {
+// 		for (let j = i; j < s.length; j++) {
+// 			if (checkRepetition(s, i, j)) {
+// 				output = Math.max(output, j - i + 1);
+// 			}
+// 		}
+// 	}
+// 	return output;
+// };
+
+// improved with set and sliding window approach
 let lengthOfLongestSubstring = function (s) {
 	let output = 0;
-
-	function checkRepetition(s, start, end) {
-		let chars = new Set();
-		for (let i = start; i <= end; i++) {
-			if (chars.has(s[i])) {
-				return false;
-			}
-			chars.add(s[i]);
-		}
-		return true;
-	}
-
-	for (let i = 0; i < s.length; i++) {
-		for (let j = i; j < s.length; j++) {
-			if (checkRepetition(s, i, j)) {
-				output = Math.max(output, j - i + 1);
-			}
+	let left = 0;
+	let right = 0;
+	let set = new Set();
+	while (right < s.length) {
+		if (!set.has(s[right])) {
+			set.add(s[right]);
+			output = Math.max(output, set.size);
+			right++;
+		} else {
+			set.delete(s[left]);
+			left++;
 		}
 	}
 	return output;
