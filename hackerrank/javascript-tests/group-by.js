@@ -31,4 +31,4 @@ function groupBy(array, property) {
 }
 
 console.log(groupBy(PEOPLE_DATA, "age"));
-console.log(groupBy(PEOPLE_DATA, "city"));
+// console.log(groupBy(PEOPLE_DATA, "city"));
