@@ -109,11 +109,31 @@ function groupByDestination(shipments: shipmentDataTypes[]): Record<string, ship
     , {})
 }
 
+// create a function that takes in shipment data and counts the number of shipments for each status. 
+// should return an object where each key is a status and the value is the count of shipments with that status
+function countByStatus(shipments: shipmentDataTypes[]): Record<string, number> {
+    return shipments.reduce(
+        (
+            acc: Record<string, number>,
+            shipment: shipmentDataTypes
+        ) => {
+            const existingShipment = acc[shipment.status];
+            if (existingShipment) {
+                acc[shipment.status] += 1
+            } else {
+                acc[shipment.status] = 1;
+            }
+            return acc;
+        }
+    , {})
+}
+
 console.log('shippingByShipmentId: ', shipmentByShipmentId(shipmentData));
 console.log('shippingByTrackingId: ', shipmentByTrackingId(shipmentData));
 console.log('shipmentByStatus:', shipmentByStatus(shipmentData, 'delivered'));
 console.log('calculateTotalWeight: ', calculateTotalWeight(shipmentData));
 console.log('groupByDestination: ', groupByDestination(shipmentData));
+console.log('countByStatus: ', countByStatus(shipmentData));
 
 
 
