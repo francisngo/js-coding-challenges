@@ -111,4 +111,15 @@ left++ (left = 3)
 results[0] = 2 * 2 = 4
 results[4, 9, 9, 49, 121]
 
+The result array starts as an empty array and the left pointer is initialized to 0 and the right pointer is initialized to the last index of the input array (nums.length - 1);
+
+The function iterates through the input array in reverse order using the for loop. 
+
+Within the loop, the function compares the absolute values of the numbers pointed to by left and right pointers. It calculates the squaer of the number with the larger absolute value and adds it to the result array at the index i.
+
+The pointer with the larger absolute value number is moved inward, either the left pointer is incremented (if left number's absolute value is larger) or the right pointer is decremented (if right number's absolute value is larger)
+
+The loop continues until all elements of the input array have been processed
+
+The result array now holds the squares of the elements in the input array, and because of the logic that squares the number with the larger absolute value first, the result array is sorted in non-decreasing order.
 */
