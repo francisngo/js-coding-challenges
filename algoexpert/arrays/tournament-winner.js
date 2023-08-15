@@ -9,9 +9,10 @@ function tournamentWinner(competitions, results) {
 		if (results[i] === 0) {
 			scoreMap[awayTeam] = (scoreMap[awayTeam] || 0) + 3; // i = 0 => scoreMap['C#'] = 3
 		} else {
-			scoreMap[homeTeam] = (scoreMap[homeTeam] || 0) + 3; // i = 0 => scoreMap['HTML'] = 3
+			scoreMap[homeTeam] = (scoreMap[homeTeam] || 0) + 3;
 		}
 
+		// check to see who is the best team or winner on each iteration
 		if (scoreMap[awayTeam] >= winner.score) {
 			winner = { score: scoreMap[awayTeam], name: awayTeam };
 		} else if (scoreMap[homeTeam] >= winner.score) {
