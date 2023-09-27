@@ -17,4 +17,35 @@ Explanation: There are 3 equal row and column pairs:
 - (Row 2, Column 2): [2,4,2,2]
 - (Row 3, Column 2): [2,4,2,2]
 */
-var equalPairs = function (grid) {};
+var equalPairs = function (grid) {
+	let convertToKey = (arr) => {
+		let key = "";
+		for (const num of arr) {
+			key += num + ",";
+		}
+		return key;
+	};
+
+	let map = new Map();
+	for (const arr of grid) {
+		let key = convertToKey(arr);
+		map.set(key, (map.get(key) || 0) + 1);
+	}
+
+	let map2 = new Map();
+	for (let col = 0; col < grid[0].length; col++) {
+		let currentCol = [];
+		for (let row = 0; row < grid.length; row++) {
+			currentCol.push(grid[row][col]);
+		}
+		let key = convertToKey(currentCol);
+		map2.set(key, (map2.get(key) || 0) + 1);
+	}
+
+	let answer = 0;
+	for (const [key, val] of map) {
+		answer += val * map2.get(key) || 0;
+	}
+
+	return answer;
+};
